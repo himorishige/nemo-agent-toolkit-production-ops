@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Node
+node_modules/
+
+# Environments
+.env
+!.env.example
+
+# Docker
+*.pid
+
+# NAT / Phoenix / Milvus runtime
+*.db
+*.db-journal
+outputs/
+.cache/
+nat.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+
+# ruff
+.ruff_cache/
+uv.lock

@@ -1,0 +1,33 @@
+[project]
+name = "nemo-agent-toolkit-production-ops"
+version = "0.1.0"
+description = "Sample code for Zenn Book: NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse で本番投入する"
+requires-python = ">=3.12"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = [
+    "docker/nat/",
+    "docker/guardrails/",
+]
+
+[tool.ruff.lint]
+# E, W: pycodestyle / F: pyflakes / I: isort / UP: pyupgrade
+# B: flake8-bugbear / SIM: flake8-simplify / RUF: Ruff 固有
+select = ["E", "W", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+    "E501",
+    "RUF001",  # ambiguous unicode char in strings（日本語コメント/文字列を許容）
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[dependency-groups]
+tools = [
+    "pillow>=12.2.0",
+]
