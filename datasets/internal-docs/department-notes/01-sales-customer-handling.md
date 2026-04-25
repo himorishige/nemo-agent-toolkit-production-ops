@@ -16,9 +16,9 @@ updated_at: "2026-04-05"
 
 | 顧客企業       | 業種     | 担当営業         | 主担当の連絡先                           |
 | -------------- | -------- | ---------------- | ---------------------------------------- |
-| Acme 商事      | 製造     | 山田 太郎        | yamada.taro@asahi-systems.example.com    |
-| ZenithCorp     | 流通     | 佐藤 花子        | sato.hanako@asahi-systems.example.com    |
-| Pegasus Group  | サービス | 鈴木 一郎        | suzuki.ichiro@asahi-systems.example.com  |
+| Acme 商事      | 製造     | 山田 太郎        | yamada.taro@example.com    |
+| ZenithCorp     | 流通     | 佐藤 花子        | sato.hanako@example.com    |
+| Pegasus Group  | サービス | 鈴木 一郎        | suzuki.ichiro@example.com  |
 
 ## 顧客連絡先（架空）
 

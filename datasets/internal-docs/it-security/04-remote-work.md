@@ -31,6 +31,6 @@ updated_at: "2026-02-25"
 ## トラブルシュート
 
 - VPN が繋がらない: 社内ポータル「VPN ヘルプ」を参照
-- 解決しない場合: 情シス部 ヘルプデスク（`it-helpdesk@asahi-systems.example.com`）
+- 解決しない場合: 情シス部 ヘルプデスク（`it-helpdesk@example.com`）
 
 セキュリティに不安がある場合は、無理せず情シス部に相談してください。

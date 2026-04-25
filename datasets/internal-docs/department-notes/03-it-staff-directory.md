@@ -16,17 +16,17 @@ updated_at: "2026-04-10"
 
 | 社員 ID    | 氏名         | 役職       | 担当領域                       | 内線 | メール                                       |
 | ---------- | ------------ | ---------- | ------------------------------ | ---- | -------------------------------------------- |
-| asahi-1001 | 高橋 健一    | 部長       | 情シス全般、外部ベンダー対応   | 1101 | takahashi.kenichi@asahi-systems.example.com  |
-| asahi-1002 | 渡辺 美咲    | マネージャー | アカウント管理、SSO 運用       | 1102 | watanabe.misaki@asahi-systems.example.com    |
-| asahi-1003 | 中村 涼      | エンジニア | ヘルプデスク、デバイス管理     | 1103 | nakamura.ryo@asahi-systems.example.com       |
-| asahi-1004 | 小林 優子    | エンジニア | ネットワーク、VPN              | 1104 | kobayashi.yuko@asahi-systems.example.com     |
-| asahi-1005 | 加藤 大輔    | エンジニア | クラウドインフラ、SaaS 連携    | 1105 | kato.daisuke@asahi-systems.example.com       |
-| asahi-1006 | 山本 さくら  | セキュリティ担当 | インシデント対応、ポリシー策定 | 1106 | yamamoto.sakura@asahi-systems.example.com    |
+| example-1001 | 高橋 健一    | 部長       | 情シス全般、外部ベンダー対応   | 1101 | takahashi.kenichi@example.com  |
+| example-1002 | 渡辺 美咲    | マネージャー | アカウント管理、SSO 運用       | 1102 | watanabe.misaki@example.com    |
+| example-1003 | 中村 涼      | エンジニア | ヘルプデスク、デバイス管理     | 1103 | nakamura.ryo@example.com       |
+| example-1004 | 小林 優子    | エンジニア | ネットワーク、VPN              | 1104 | kobayashi.yuko@example.com     |
+| example-1005 | 加藤 大輔    | エンジニア | クラウドインフラ、SaaS 連携    | 1105 | kato.daisuke@example.com       |
+| example-1006 | 山本 さくら  | セキュリティ担当 | インシデント対応、ポリシー策定 | 1106 | yamamoto.sakura@example.com    |
 
 ## 連絡窓口
 
-- 一般的な問い合わせ: `it-helpdesk@asahi-systems.example.com`（メンバーが当番制で対応）
-- インシデント通報: `it-incident@asahi-systems.example.com`
+- 一般的な問い合わせ: `it-helpdesk@example.com`（メンバーが当番制で対応）
+- インシデント通報: `it-incident@example.com`
 - 緊急時の電話: 03-1900-XXXX（24 時間 365 日、当番制）
 
 ## 担当外

@@ -13,8 +13,8 @@ updated_at: "2026-02-10"
 
 ## アカウントの種類
 
-- **社員 ID（asahi-XXXX）**: 社内ポータル、社内 GitHub、社内 Slack の認証共通 ID
-- **業務メールアドレス**: `lastname.firstname@asahi-systems.example.com` 形式
+- **社員 ID（example-XXXX）**: 社内ポータル、社内 GitHub、社内 Slack の認証共通 ID
+- **業務メールアドレス**: `lastname.firstname@example.com` 形式
 - **業務用 SaaS アカウント**: SSO 経由で発行（個別申請は不要）
 
 ## パスワードポリシー

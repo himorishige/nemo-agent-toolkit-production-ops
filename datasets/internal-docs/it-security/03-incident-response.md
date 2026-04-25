@@ -23,7 +23,7 @@ updated_at: "2026-03-20"
 
 ## 通報経路
 
-- 平日 9:00 〜 18:00: 情シス部の `it-incident@asahi-systems.example.com` に件名「インシデント報告」で通報
+- 平日 9:00 〜 18:00: 情シス部の `it-incident@example.com` に件名「インシデント報告」で通報
 - 上記時間外: 緊急用 Slack `#incident-response` チャンネル + 当番制の電話番号（社内ポータルで確認）
 
 ## 初動（発覚から 1 時間以内）

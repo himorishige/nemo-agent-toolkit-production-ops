@@ -1,5 +1,5 @@
 ---
-title: "プロダクト『AsahiFlow』概要"
+title: "プロダクト『ExampleFlow』概要"
 category: product
 department: all
 confidentiality: public
@@ -7,13 +7,13 @@ has_pii: false
 updated_at: "2026-04-15"
 ---
 
-# プロダクト『AsahiFlow』概要
+# プロダクト『ExampleFlow』概要
 
-アサヒシステムズが提供する SaaS『AsahiFlow』の製品概要です。本ドキュメントは社外公開用の素材として作成されています。
+Example が提供する SaaS『ExampleFlow』の製品概要です。本ドキュメントは社外公開用の素材として作成されています。
 
 ## サービスの位置付け
 
-AsahiFlow は中小企業向けの業務フロー自動化プラットフォームです。経費精算・稟議承認・在庫管理など、社内のフロー業務をテンプレートとして提供し、ノーコードでカスタマイズできます。
+ExampleFlow は中小企業向けの業務フロー自動化プラットフォームです。経費精算・稟議承認・在庫管理など、社内のフロー業務をテンプレートとして提供し、ノーコードでカスタマイズできます。
 
 ## 主な機能
 
