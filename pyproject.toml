@@ -1,7 +1,7 @@
 [project]
 name = "nemo-agent-toolkit-production-ops"
 version = "0.1.0"
-description = "Sample code for Zenn Book: NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse で本番投入する"
+description = "Sample code for Zenn Book: NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse"
 requires-python = ">=3.12"
 
 [tool.ruff]

@@ -1,6 +1,6 @@
 # NeMo Agent Toolkit 実践運用編 サンプルコード
 
-Zenn Book **NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse で本番投入する**（仮タイトル、`nemo-agent-toolkit-production-ops` slug 予定）のサンプルコード配布リポジトリです。
+Zenn Book **NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse**（仮タイトル、`nemo-agent-toolkit-production-ops` slug 予定）のサンプルコード配布リポジトリです。
 
 前作 [NIM + Docker ではじめる NeMo Agent Toolkit ハンズオン](https://zenn.dev/himorishige/books/nemo-agent-toolkit-nim-handson) の続編で、NAT を **production grade に昇華する 4 本柱**（Orchestration / Guardrails / Observability / Eval Dataset）を社内ドキュメント Q&A 題材で扱います。
 
