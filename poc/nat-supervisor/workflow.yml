@@ -1,0 +1,27 @@
+general:
+  use_uvloop: true
+  telemetry:
+    tracing:
+      langfuse:
+        _type: langfuse
+        endpoint: ${LANGFUSE_OTLP_ENDPOINT}
+        public_key: ${LANGFUSE_PUBLIC_KEY}
+        secret_key: ${LANGFUSE_SECRET_KEY}
+        batch_size: 1
+        flush_interval: 1.0
+        resource_attributes:
+          service.name: nat-supervisor-poc
+          deployment.environment: poc
+
+llms:
+  nim_llm:
+    _type: nim
+    model_name: nvidia/llama-3.3-nemotron-super-49b-v1
+    api_key: ${NGC_API_KEY}
+
+workflow:
+  _type: langgraph_wrapper
+  description: "Supervisor multi-agent — supervisor + 3 experts + finalize"
+  graph: /app/graphs/supervisor_graph.py:make_graph
+  dependencies:
+    - /app/graphs
