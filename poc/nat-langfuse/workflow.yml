@@ -1,0 +1,33 @@
+general:
+  use_uvloop: true
+  telemetry:
+    tracing:
+      langfuse:
+        _type: langfuse
+        endpoint: ${LANGFUSE_OTLP_ENDPOINT}
+        public_key: ${LANGFUSE_PUBLIC_KEY}
+        secret_key: ${LANGFUSE_SECRET_KEY}
+        batch_size: 1
+        flush_interval: 1.0
+        resource_attributes:
+          service.name: nat-langfuse-poc
+          deployment.environment: poc
+
+llms:
+  nim_llm:
+    _type: nim
+    model_name: nvidia/llama-3.3-nemotron-super-49b-v1
+    api_key: ${NGC_API_KEY}
+    temperature: 0.0
+    max_tokens: 512
+
+functions:
+  current_datetime:
+    _type: current_datetime
+
+workflow:
+  _type: react_agent
+  tool_names:
+    - current_datetime
+  llm_name: nim_llm
+  verbose: true

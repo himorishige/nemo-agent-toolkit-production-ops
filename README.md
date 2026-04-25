@@ -15,32 +15,55 @@ Zenn Book **NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse で本
 
 ## クイックスタート
 
-各章の README を参照してください。Sprint 1 着手後に章ディレクトリを順次追加します。
+```bash
+git clone https://github.com/himorishige/nemo-agent-toolkit-production-ops.git
+cd nemo-agent-toolkit-production-ops
 
-## 章別ディレクトリ（予定）
+# NAT のベースイメージは前作のものを流用（前作リポでビルド済みであれば不要）
+docker build -t nat-nim-handson:1.6.0 docker/nat/  # 前作の Dockerfile を別途取得して配置
 
-| 章   | ディレクトリ                  | 内容                                                                        |
-| ---- | ----------------------------- | --------------------------------------------------------------------------- |
-| 04   | `ch04-langgraph/`             | LangGraph を NAT function として組み込む最小実装                            |
-| 05   | `ch05-corpus/`                | 社内ドキュメント題材データセット（PII 含むサンプル、Apache 2.0 互換）      |
-| 06   | `ch06-rag-milvus/`            | Milvus + nv-embedqa-e5-v5 で社内文書 RAG（前作 ch09 をベースに拡張）       |
-| 07   | `ch07-langgraph-rag/`         | LangGraph state graph + RAG 統合エージェント                                |
-| 08   | `ch08-guardrails-basics/`     | NeMo Guardrails 入門 — Colang 1.0 と input/output rails 最小構成           |
-| 09   | `ch09-llama-guard/`           | Multilingual Safety Guard / Llama Guard 4 を NIM で動かしてレールに統合   |
-| 10   | `ch10-langfuse-selfhosted/`   | Langfuse v3 self-hosted（Postgres + ClickHouse + Redis + MinIO）           |
-| 11   | `ch11-nat-langfuse-otlp/`     | NAT → Langfuse OTLP 接続 + Agent Graph 可視化                              |
-| 12   | `ch12-prompt-management/`     | Langfuse Prompt 登録 / version 管理 + A/B テスト                            |
-| 13   | `ch13-cost-and-datasets/`     | コスト・トークン追跡 + Langfuse Datasets で RAG 評価                        |
-| 14   | `ch14-final/`                 | 4 本柱統合 — production 想定アプリ                                          |
-| 付録A | `appendixA-phoenix-migration/` | Phoenix → Langfuse 移行ガイド                                                |
-| 付録B | `appendixB-langfuse-cloud/`   | Langfuse Cloud と self-hosted の使い分け                                    |
+# Langfuse v3 self-hosted を起動（第 2 章 / 第 10 章）
+cd poc/langfuse
+cp .env.example .env  # ENCRYPTION_KEY などのシークレットを生成
+docker compose up -d
 
-## 共通構成（予定）
+# Milvus standalone を起動（第 6 章）+ 合成データ ingest
+cd ../../ch06-rag-milvus
+cp .env.example .env  # NGC_API_KEY を記入
+docker compose up -d milvus
+docker compose --profile ingest run --rm ingest
 
-- `docker/nat/` — 全章共通の NAT 実行コンテナ（前作と同じ `python:3.12-slim` ベース、`nvidia-nat[langchain,mcp,eval,opentelemetry]==1.6.0`）
-- `docker/langfuse/` — Langfuse v3.22+ self-hosted compose の共通設定
-- `datasets/internal-docs/` — Ch 5 以降で使う社内ドキュメント題材（PII 含む合成データ、Apache 2.0）
-- `ch13-cost-and-datasets/dataset/` — 評価用データセット
+# RAG エージェント（第 7 章）を実行
+cd ../poc/nat-rag-langgraph
+cp .env.example .env
+docker compose run --rm nat
+```
+
+## 章とディレクトリの対応
+
+書籍の章ごとに、対応するサンプルディレクトリは次のとおりです。
+
+| 章                | ディレクトリ                       | 内容                                                                   |
+| ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
+| 第 4 章 (PoC-2)   | `poc/nat-langfuse/`                | hello agent + Langfuse OTLP 直送（最小構成）                           |
+| 第 4 章 (PoC-4)   | `poc/nat-langgraph/`               | 最小 LangGraph（classify + respond の 2 ノード）                       |
+| 第 5 章           | `datasets/internal-docs/`          | 架空企業の社内文書 16 ファイル（PII / 機密度メタデータ付き、Apache 2.0）|
+| 第 6 章           | `ch06-rag-milvus/`                 | Milvus + frontmatter 対応 ingest スクリプト + retrieval スモークテスト |
+| 第 7 章           | `poc/nat-rag-langgraph/`           | classify → retrieve → answer の 3 ノード RAG エージェント               |
+| 第 8 章           | `poc/nat-guardrails/`              | NeMo Guardrails self_check（Guardrails 主導の 1 ノード構成）           |
+| 第 9 章           | `poc/nat-multilingual-safety/`     | Multilingual Safety Guard v3 を NIM 経由で組み込み                     |
+| 第 10-11 章       | `poc/langfuse/`                    | Langfuse v3 self-hosted の compose（postgres + clickhouse + minio 等） |
+| 第 12 章          | `poc/nat-prompts/`                 | Langfuse Prompts 経由で system prompt を取得（v1/v2 の A/B 比較）      |
+| 付録              | `poc/screenshots/`                 | 本書スクショ撮影用の Python スクリプト（Playwright）                   |
+
+第 13 章（コスト追跡・Datasets）と第 14 章（4 本柱統合）の compose / 評価スクリプトは、本リポジトリの順次更新で追加していきます。
+
+## 共通構成
+
+- `docker/nat/` — 全章共通の NAT 実行コンテナ（前作の `nat-nim-handson:1.6.0` イメージを再利用、または `python:3.12-slim` + `nvidia-nat[langchain,mcp,eval,opentelemetry]==1.6.0` でビルド）
+- `poc/nat-guardrails/Dockerfile` — NeMo Guardrails 0.21.0 を追加した `nat-prod-ops-guardrails:0.21.0` 派生イメージ
+- `poc/nat-prompts/Dockerfile` — langfuse Python SDK を追加した `nat-prod-ops-prompts:1.6.0` 派生イメージ
+- `datasets/internal-docs/` — 16 ファイルの社内文書（公開可、Apache 2.0、すべて架空）
 
 ## バージョン
 
@@ -49,7 +72,7 @@ Zenn Book **NeMo Agent Toolkit 実践運用編 — Guardrails × Langfuse で本
 | nvidia-nat       | 1.6.0                                            |
 | Python           | 3.12（Docker イメージ側）                        |
 | workflow LLM     | `nvidia/llama-3.3-nemotron-super-49b-v1`         |
-| Guardrail LLM    | 日本語強化モデル選定中（Sprint 0 追加調査後確定）|
+| Guardrail LLM    | `nvidia/llama-3.1-nemotron-safety-guard-8b-v3`（Multilingual Safety Guard v3）|
 | Embedding        | `nvidia/nv-embedqa-e5-v5`                        |
 | NeMo Guardrails  | v0.21.0（Colang 1.0）                            |
 | Langfuse         | v3.22+（self-hosted、`/api/public/otel` 必須）   |

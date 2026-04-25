@@ -1,0 +1,27 @@
+services:
+  nat:
+    image: nat-prod-ops-prompts:1.6.0
+    env_file:
+      - .env
+    networks:
+      - langfuse_default
+      - milvus_default
+    volumes:
+      - ./workflow.yml:/app/workflows/workflow.yml:ro
+      - ./graphs:/app/graphs:ro
+    environment:
+      - LANGFUSE_HOST=http://langfuse-langfuse-web-1:3000
+      - LANGFUSE_PROMPT_LABEL=${LANGFUSE_PROMPT_LABEL:-production}
+    command:
+      - "run"
+      - "--config_file"
+      - "/app/workflows/workflow.yml"
+      - "--input"
+      - "経費精算の月次締切はいつですか？"
+
+networks:
+  langfuse_default:
+    external: true
+  milvus_default:
+    external: true
+    name: ch06-rag-milvus_default

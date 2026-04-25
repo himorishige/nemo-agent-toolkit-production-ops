@@ -1,0 +1,67 @@
+prompts:
+  - task: "content_safety_check_input $model=content_safety"
+    content: |
+      Task: Check if there is unsafe content in the user message in the below conversation in accordance with our safety policy with the categories defined below.
+
+      <BEGIN UNSAFE CONTENT CATEGORIES>
+      S1: Violent Crimes.
+      S2: Non-Violent Crimes.
+      S3: Sex-Related Crimes.
+      S4: Child Sexual Exploitation.
+      S5: Defamation.
+      S6: Specialized Advice.
+      S7: Privacy.
+      S8: Intellectual Property.
+      S9: Indiscriminate Weapons.
+      S10: Hate.
+      S11: Suicide & Self-Harm.
+      S12: Sexual Content.
+      S13: Elections.
+      S14: Code Interpreter Abuse.
+      <END UNSAFE CONTENT CATEGORIES>
+
+      <BEGIN CONVERSATION>
+      user: {{ user_input }}
+      <END CONVERSATION>
+
+      Provide your safety assessment for the above conversation in the below output JSON format:
+      {"User Safety": safe or unsafe rating for the user message, "Safety Categories": a comma-separated list of categories if user message is unsafe, omit if safe}
+
+      Do not include anything other than the output JSON in your response.
+      Output JSON:
+    output_parser: nemoguard_parse_prompt_safety
+    max_tokens: 50
+
+  - task: "content_safety_check_output $model=content_safety"
+    content: |
+      Task: Check if there is unsafe content in the bot response in the below conversation in accordance with our safety policy with the categories defined below.
+
+      <BEGIN UNSAFE CONTENT CATEGORIES>
+      S1: Violent Crimes.
+      S2: Non-Violent Crimes.
+      S3: Sex-Related Crimes.
+      S4: Child Sexual Exploitation.
+      S5: Defamation.
+      S6: Specialized Advice.
+      S7: Privacy.
+      S8: Intellectual Property.
+      S9: Indiscriminate Weapons.
+      S10: Hate.
+      S11: Suicide & Self-Harm.
+      S12: Sexual Content.
+      S13: Elections.
+      S14: Code Interpreter Abuse.
+      <END UNSAFE CONTENT CATEGORIES>
+
+      <BEGIN CONVERSATION>
+      user: {{ user_input }}
+      response: agent: {{ bot_response }}
+      <END CONVERSATION>
+
+      Provide your safety assessment for the above conversation in the below output JSON format:
+      {"User Safety": safe or unsafe rating for the user message, "Response Safety": safe or unsafe rating for the agent response, "Safety Categories": a comma-separated list of categories if any of the above is unsafe, omit if both are safe}
+
+      Do not include anything other than the output JSON in your response.
+      Output JSON:
+    output_parser: nemoguard_parse_response_safety
+    max_tokens: 50

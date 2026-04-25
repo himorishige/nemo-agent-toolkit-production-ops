@@ -1,0 +1,20 @@
+services:
+  nat:
+    image: nat-nim-handson:1.6.0
+    env_file:
+      - .env
+    networks:
+      - langfuse_default
+    volumes:
+      - ./workflow.yml:/app/workflows/workflow.yml:ro
+      - ./graphs:/app/graphs:ro
+    command:
+      - "run"
+      - "--config_file"
+      - "/app/workflows/workflow.yml"
+      - "--input"
+      - "今日は何日ですか？"
+
+networks:
+  langfuse_default:
+    external: true
