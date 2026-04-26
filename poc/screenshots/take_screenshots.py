@@ -13,7 +13,7 @@ from pathlib import Path
 
 from playwright.async_api import async_playwright
 
-OUTPUT_DIR = Path("/home/morishige/works/zenn-contents/books/nemo-agent-toolkit-production-ops/images")
+OUTPUT_DIR = Path("/home/morishige/works/zenn-contents/images/nemo-agent-toolkit-production-ops")
 HOST = "http://localhost:3000"
 EMAIL = "poc@example.local"
 PASSWORD = os.environ.get("LF_PASSWORD", "")

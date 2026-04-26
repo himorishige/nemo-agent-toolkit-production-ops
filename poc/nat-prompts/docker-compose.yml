@@ -17,7 +17,7 @@ services:
       - "--config_file"
       - "/app/workflows/workflow.yml"
       - "--input"
-      - "経費精算の月次締切はいつですか？"
+      - "パスワードポリシーは？"
 
 networks:
   langfuse_default:
